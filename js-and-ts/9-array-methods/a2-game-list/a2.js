@@ -10,11 +10,7 @@ const games = [
   { id: 2221358512, date: "2022-11-02", score: 197, won: false },
   { id: 1847684969, date: "2022-11-03", score: 203, won: true },
 ];
-a)
-Find the game with id of 1958468135 and print it.
 
-b)
-Find the index of the first game that the player has won. Print the index.
 */
 
 const games = [
@@ -27,21 +23,8 @@ const games = [
   { id: 1847684969, date: "2022-11-03", score: 203, won: true },
 ];
 
-for (const game of games) {
-  if (game.id === 1958468135) {
-    console.log(
-      `Game #${game.id}\nCreated: ${game.date}\nScore: ${game.score}\nWon: ${game.won}`
-    );
-    break;
-  }
-}
+//a) Find the game with id of 1958468135 and print it.
 console.log(games.find((g) => g.id === 1958468135));
 
-for (const i in games) {
-  if (games[i].won === true) {
-    console.log(`${i} - the index of the first game that the player has won.`);
-    break;
-  }
-}
-
+//b) Find the index of the first game that the player has won. Print the index.
 console.log(games.findIndex((g) => g.won));

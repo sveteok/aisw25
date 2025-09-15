@@ -3,7 +3,12 @@ Write a function sortNumberArray that takes an array as a parameter and sorts th
 
 To accomplish this, you'll need to think of an algorithm for sorting an array.
 
-Use loops, indexing and the methods in the learning material to sort the array. Do not use Array.sort. While in real productivity code you'd usually use Array.sort, it is still important for you to know how it works under the hood, and one of the best ways to learn that is implementing it yourself.
+
+Use loops, indexing and the methods in the learning material to sort the array.
+Do not use Array.sort.
+While in real productivity code you'd usually use Array.sort, it is still important for you to know
+how it works under the hood, and one of the best ways to learn that is implementing it yourself.
+
 
 For example:
 
@@ -12,6 +17,7 @@ sortNumberArray(array);
 console.log(array); // prints [ 1, 4, 6, 7, 9, 13, 19, 22 ]
 */
 
+// Bubble sort. Complexity O(n^2); stable
 const sortNumberArray = (arr) => {
   let needSorted,
     n = arr.length;
@@ -32,4 +38,28 @@ const sortNumberArray = (arr) => {
 
 const array = [4, 19, 7, 1, 9, 22, 6, 13];
 sortNumberArray(array);
+console.log(array); // prints [ 1, 4, 6, 7, 9, 13, 19, 22 ]
+
+// Alternative solution using quick sort. Complexity O(n log n); unstable
+const quickSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+
+  return [...quickSort(left), pivot, ...quickSort(right)];
+};
+
+quickSort(array);
 console.log(array); // prints [ 1, 4, 6, 7, 9, 13, 19, 22 ]

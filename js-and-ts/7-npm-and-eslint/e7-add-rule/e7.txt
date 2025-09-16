@@ -1,0 +1,4 @@
+Add following rule to eslint.config
+
+"no-var": "error",
+Save the file and fix the ESLint issues

@@ -1,0 +1,7 @@
+Create a new TypeScript project, with one console.log command. 
+Install ESLint as a development dependency. Use the config creator to create a config file.
+
+Make sure that the created config file is version 9 -compliant eslint.config file, not older .eslintrc file.
+
+Read through the file. Then delete it and create another one with different configuration, and 
+see how the generated config file changes.

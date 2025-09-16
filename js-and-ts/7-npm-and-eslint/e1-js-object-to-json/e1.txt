@@ -1,0 +1,22 @@
+Create a JS object with cars like this and save it as .js file
+Convert the data into proper JSON -format by hand and save it into a new .json file
+
+The idea is to see how JSON differs from a JS object.
+
+const cars = [
+  {
+    registration: "abc-123",
+    make: "Toyota",
+    year: 1998,
+  },
+  {
+    registration: "xyz-999",
+    make: "Mercedes Benz",
+    year: 2011,
+  },
+  {
+    registration: "735-la",
+    make: "Tesla",
+    year: 2022,
+  },
+];

@@ -1,0 +1,14 @@
+Create a new folder for this exercise. Use command line to navigate into this folder. Initialize a project:
+
+npm init -y
+Note that the installation created package.json file. Check out it's contents. 
+Next install a small npm package called camel-case. 
+It is a package that is not very useful for us right now, 
+but it demonstrates what happens when we install a package.
+
+npm install camel-case
+Now another file, package-lock.json is created. A folder called node_modules is also created. 
+See what is inside the file and the folder. Then remove the package.
+
+npm uninstall camel-case
+See what happens to the package-lock.json file and node_modules folder.

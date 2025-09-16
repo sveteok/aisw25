@@ -1,3 +1,16 @@
+/*
+Add rules to
+
+1. give only warning for unused variables
+2. give an error if user does not use curly braces on if statements
+3. give a warning if there's console.log calls in the code
+Refer to the ESLint rules reference - https://eslint.org/docs/latest/rules 
+
+Write some code that uses single quotes and does not use semicolons. Then run your linter to make sure the problems are caught
+
+Extra: By default, ESLint gives an error for unused variables. Migitate this to warning only.
+*/
+
 const unusedVar = 42; // This should trigger a warning
 
 //This should trigger a warning for using console.log

@@ -9,27 +9,28 @@ Hint: use the modulo / remainder operator %. For example, number % 2 === 0 can b
 
 Make both for and while versions of this exercise.
 */
+{
+  for (let i: number = 1; i <= 100; i++) {
+    let text: string = "";
+    if (i % 3 === 0) {
+      text += "Fizz";
+    }
+    if (i % 5 === 0) {
+      text += "Buzz";
+    }
+    console.log(text.length === 0 ? i + "" : text);
+  }
 
-for (let i = 1; i <= 100; i++) {
-  let text = "";
-  if (i % 3 === 0) {
-    text += "Fizz";
+  let n: number = 1;
+  while (n <= 100) {
+    let text: string = "";
+    if (n % 3 === 0) {
+      text += "Fizz";
+    }
+    if (n % 5 === 0) {
+      text += "Buzz";
+    }
+    console.log(text.length === 0 ? n + "" : text);
+    n++;
   }
-  if (i % 5 === 0) {
-    text += "Buzz";
-  }
-  console.log(text.length === 0 ? i + "" : text);
-}
-
-let n = 1;
-while (n <= 100) {
-  let text = "";
-  if (n % 3 === 0) {
-    text += "Fizz";
-  }
-  if (n % 5 === 0) {
-    text += "Buzz";
-  }
-  console.log(text.length === 0 ? n + "" : text);
-  n++;
 }

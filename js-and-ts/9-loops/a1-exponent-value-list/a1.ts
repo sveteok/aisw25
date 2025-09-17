@@ -15,13 +15,13 @@ If n is zero or negative, the function should just print n needs to be positive 
 
 */
 
-const exponentValueList = (n) => {
+const exponentValueList = (n: number): void => {
   if (n <= 0) {
     console.error("The number must be positive.");
     return;
   }
-  let val = 2;
-  for (let i = 1; i <= n; i++) {
+  let val: number = 2;
+  for (let i: number = 1; i <= n; i++) {
     console.log(val);
     val *= 2;
   }
@@ -36,18 +36,14 @@ Add a parameter to exponentValueList so that instead of the number to raise in p
 it can also be defined by the caller.
 */
 console.log();
-const exponentValueListB = (n, baseNum) => {
-  if (n <= 0 || n === undefined || n === null) {
+const exponentValueListB = (n: number, baseNum: number): void => {
+  if (n <= 0) {
     console.log("The number must be positive.");
     return;
   }
-  if (baseNum === undefined || baseNum === null) {
-    console.log("Base number is required");
-    return;
-  }
 
-  for (let i = 1; i <= n; i++) {
-    console.log(baseNum ** i);
+  for (let i: number = 1; i <= n; i++) {
+    console.log(baseNum ** i); // or use Math.pow(baseNum, i)
   }
 };
 

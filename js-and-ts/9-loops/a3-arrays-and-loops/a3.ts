@@ -23,19 +23,19 @@ for (let index = 0; index < numbers.length; index++) {
 }
   */
 
-const ages = [20, 35, 27, 44, 24, 32];
+const ages: number[] = [20, 35, 27, 44, 24, 32];
 console.log(ages);
 
-const printArrayData = (arr) => {
-  for (let index = 0; index < arr.length; index++) {
-    const element = arr[index];
+const printArrayData = (arr: number[]): void => {
+  for (let index: number = 0; index < arr.length; index++) {
+    const element: number = arr[index];
     console.log(element);
   }
 };
 
-const printAgeAvg = (arr) => {
-  let avg = 0;
-  for (let index = 0; index < arr.length; index++) {
+const printAgeAvg = (arr: number[]): void => {
+  let avg: number = 0;
+  for (let index: number = 0; index < arr.length; index++) {
     avg += arr[index];
   }
   avg = Math.round(avg / arr.length);

@@ -3,9 +3,9 @@ Create a function countSheep that takes a number as a parameter and returns a st
 
 Call your function and console.log the result to make sure the function works.
 */
-const countSheep = (n) => {
-  let text = "";
-  for (let i = 1; i <= n; i++) {
+const countSheep = (n: number): string => {
+  let text: string = "";
+  for (let i: number = 1; i <= n; i++) {
     text += `${i} sheep... `;
   }
   return text;

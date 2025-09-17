@@ -20,14 +20,14 @@ Print the final values of X and Y once the string has been processed.
 
 Tip: you can use the charAt function to get an individual letter by index, as is done in the code in assignment 6
 */
-const commandList = "NNEESSWWCNNEEENNNCEESSSWNNNECEESWWNNNEEEBENNNEEE";
+const commandList: string = "NNEESSWWCNNEEENNNCEESSSWNNNECEESWWNNNEEEBENNNEEE";
 
-const executeCommand = (commandList) => {
-  let x = 0,
-    y = 0;
+const executeCommand = (commandList: string): void => {
+  let x: number = 0,
+    y: number = 0;
 
-  for (let i = 0; i < commandList.length; i++) {
-    const currChar = commandList.charAt(i).toLowerCase();
+  for (let i: number = 0; i < commandList.length; i++) {
+    const currChar: string = commandList.charAt(i).toLowerCase();
 
     if (currChar === "b") {
       break;
@@ -58,3 +58,4 @@ const executeCommand = (commandList) => {
 };
 
 executeCommand(commandList);
+//Final position: (8, 7)

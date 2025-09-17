@@ -10,7 +10,7 @@ console.log(charIndexString("rose")); // prints "1815195"
 Tip: go through the string letter-by-letter. For each letter, figure out its charIndex. Then convert the charIndex into a string and add it to the string that you later return.
 */
 
-const charIndex = {
+const charIndex: { [key: string]: number } = {
   a: 1,
   b: 2,
   c: 3,
@@ -39,10 +39,10 @@ const charIndex = {
   z: 26,
 };
 
-const charIndexString = (str) => {
-  let result = "";
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charAt(i).toLowerCase();
+const charIndexString = (str: string): string => {
+  let result: string = "";
+  for (let i: number = 0; i < str.length; i++) {
+    const char: string = str.charAt(i).toLowerCase();
     if (charIndex[char]) {
       result += charIndex[char];
     }

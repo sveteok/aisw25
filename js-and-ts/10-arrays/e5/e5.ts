@@ -10,20 +10,22 @@ remove the first element and the last 5 elements of the array.
 Also remove the element "gray".
 
 The end result should be [ "the",  "quick", "fox", ]. Print your array.*/
-const arr = [
-  "pangram:",
-  "the",
-  "quick",
-  "gray",
-  "fox",
-  "jumps",
-  "over",
-  "the",
-  "lazy",
-  "dog",
-];
+{
+  const arr: string[] = [
+    "pangram:",
+    "the",
+    "quick",
+    "gray",
+    "fox",
+    "jumps",
+    "over",
+    "the",
+    "lazy",
+    "dog",
+  ];
 
-arr.shift();
-arr.splice(arr.length - 5, arr.length);
-arr.splice(2, 1);
-console.log(arr);
+  arr.shift();
+  arr.splice(arr.length - 5, arr.length);
+  arr.splice(2, 1);
+  console.log(arr);
+}

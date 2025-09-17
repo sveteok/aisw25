@@ -12,7 +12,7 @@ As usual, test to make sure your program works.
 
 */
 
-const arr = ["the", "quick", "brown", "fox"];
+const arr: string[] = ["the", "quick", "brown", "fox"];
 console.log(arr);
 console.log(arr[1]);
 console.log(arr[2]);

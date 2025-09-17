@@ -29,14 +29,20 @@ Then, use a loop to go through your command list, now converted into an array of
 Print the final values of X and Y once the string has been processed.
 */
 
-let x = 0;
-let y = 0;
+let x: number = 0;
+let y: number = 0;
 
-const commandList = "NNEESSWWCNNEEENNNCEESSSWNNNECEESWWNNNEEEBENNNEEE";
+const commandList: string = "NNEESSWWCNNEEENNNCEESSSWNNNECEESWWNNNEEEBENNNEEE";
 
-const functions = [() => y++, () => x++, () => y--, () => x--, () => {}];
+const functions: (() => void)[] = [
+  () => y++,
+  () => x++,
+  () => y--,
+  () => x--,
+  () => {},
+];
 
-const commandToNumber = (command) => {
+const commandToNumber = (command: string): number => {
   switch (command.toLowerCase()) {
     case "n":
       return 0;
@@ -56,10 +62,10 @@ const commandToNumber = (command) => {
   }
 };
 
-const commandArray = [];
-for (let i = 0; i < commandList.length; i++) {
-  const currChar = commandList.charAt(i);
-  const commandNumber = commandToNumber(currChar);
+const commandArray: number[] = [];
+for (let i: number = 0; i < commandList.length; i++) {
+  const currChar: string = commandList.charAt(i);
+  const commandNumber: number = commandToNumber(currChar);
   if (commandNumber === 5) {
     break;
   }
@@ -71,8 +77,8 @@ for (let i = 0; i < commandList.length; i++) {
 //   0, 1, 4, 1, 1, 2, 3, 3, 0, 0, 0, 1, 1, 1,
 // ];
 
-for (let i = 0; i < commandArray.length; i++) {
-  const commandNumber = commandArray[i];
+for (let i: number = 0; i < commandArray.length; i++) {
+  const commandNumber: number = commandArray[i];
   functions[commandNumber]();
 }
 

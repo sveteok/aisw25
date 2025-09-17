@@ -9,8 +9,15 @@ Tip: You can use Array.indexOf to find the index of a specific item in the array
 
 */
 
-const fruits = ["banana", "apple", "grapefruit", "pear", "pineapple", "lemon"];
+const fruits: string[] = [
+  "banana",
+  "apple",
+  "grapefruit",
+  "pear",
+  "pineapple",
+  "lemon",
+];
 
-const index = fruits.indexOf("pear");
+const index: number = fruits.indexOf("pear");
 fruits.splice(index, 1);
 console.log(fruits);

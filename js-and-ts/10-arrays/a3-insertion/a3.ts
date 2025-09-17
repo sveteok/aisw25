@@ -10,8 +10,8 @@ insertNumber(array, 90);
 console.log(array); // prints [ 1, 3, 4, 7, 8, 11, 90 ]
 */
 
-const insertNumber = (arr, num) => {
-  for (let i = 0; i < arr.length; i++) {
+const insertNumber = (arr: number[], num: number): void => {
+  for (let i: number = 0; i < arr.length; i++) {
     if (arr[i] >= num) {
       arr.splice(i, 0, num);
       return;
@@ -20,7 +20,7 @@ const insertNumber = (arr, num) => {
   arr.push(num);
 };
 
-const array = [1, 3, 4, 7, 11];
+const array: number[] = [1, 3, 4, 7, 11];
 insertNumber(array, 8);
 console.log(array); // prints [ 1, 3, 4, 7, 8, 11 ]
 insertNumber(array, 90);

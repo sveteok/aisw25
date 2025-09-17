@@ -7,23 +7,24 @@ Also create a second array that is empty.
 
 Make the program go through the first array and add all fruits with more than 6 characters in their name to the second array. Print the second array when done. Use a for…of loop for the task.
 */
+{
+  const fruits: string[] = [
+    "cherry",
+    "banana",
+    "coconut",
+    "apple",
+    "pear",
+    "pineapple",
+    "lemon",
+    "pumpkin",
+  ];
 
-const fruits = [
-  "cherry",
-  "banana",
-  "coconut",
-  "apple",
-  "pear",
-  "pineapple",
-  "lemon",
-  "pumpkin",
-];
+  const longWidthFruits: string[] = [];
 
-const longWidthFruits = [];
-
-for (const fruit of fruits) {
-  if (fruit.length > 6) {
-    longWidthFruits.push(fruit);
+  for (const fruit of fruits) {
+    if (fruit.length > 6) {
+      longWidthFruits.push(fruit);
+    }
   }
+  console.log(longWidthFruits);
 }
-console.log(longWidthFruits);

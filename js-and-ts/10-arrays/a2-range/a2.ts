@@ -8,15 +8,15 @@ console.log(numberRange(9, 5)); // prints [ 9, 8, 7, 6, 5 ]
 Note the order of the values! When start is smaller than end, the order is ascending, and when start is greater than end, the order is descending.
 */
 
-const numberRange = (start, end) => {
-  const arr = [];
+const numberRange = (start: number, end: number): number[] => {
+  const arr: number[] = [];
 
   if (start <= end) {
-    for (let i = start; i <= end; i++) {
+    for (let i: number = start; i <= end; i++) {
       arr.push(i);
     }
   } else {
-    for (let i = start; i >= end; i--) {
+    for (let i: number = start; i >= end; i--) {
       arr.push(i);
     }
   }

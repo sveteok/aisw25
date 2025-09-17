@@ -13,7 +13,14 @@ const objectArray = [
 There are some entries in the above array that are marked to be deleted.
 */
 
-const objectArray = [
+interface MapObject {
+  x: number;
+  y: number;
+  type: string;
+  toDelete: boolean;
+}
+
+const objectArray: (null | MapObject)[] = [
   { x: 14, y: 21, type: "tree", toDelete: false },
   { x: 1, y: 30, type: "house", toDelete: false },
   { x: 22, y: 10, type: "tree", toDelete: true },
@@ -27,8 +34,8 @@ const objectArray = [
 
 //a) Erase the entries by finding them and setting them to null. Do not replace the original array, but modify it instead.
 
-for (let i = 0; i < objectArray.length; i++) {
-  if (objectArray[i] !== null && objectArray[i].toDelete) {
+for (let i: number = 0; i < objectArray.length; i++) {
+  if (objectArray[i] !== null && objectArray[i]?.toDelete) {
     objectArray[i] = null;
   }
 }
@@ -37,15 +44,10 @@ console.log(objectArray);
 //b)Erase the entries by generating a new array with Array.map
 // where the objects to be deleted have been replaced with null and the rest stay as-is.
 
-const cleanupObjectArray = objectArray.map((e) => {
-  return e === null || !e.toDelete ? e : null;
-
-  if (e !== null && e.toDelete) {
-    return null;
-  }
-  return e;
+const cleanupObjectArray = objectArray.map((e: null | MapObject) => {
+  return e !== null && e.toDelete ? null : e;
 });
-console.log(objectArray);
+console.log(cleanupObjectArray);
 
 // Imagine that instead of 9 entries, the above array would have 100,000 entries.
 // What would be the implications for performance and memory use between doing it like in a) or like in b)?

@@ -5,19 +5,25 @@ https://coursework.vschool.io/array-reduce-exercises/
 */
 
 //1. Turn an array of numbers into a total of all the numbers
-function total(arr) {
+function total(arr: number[]): number {
   return arr.reduce((acc, curr) => acc + curr, 0);
 }
 console.log(total([1, 2, 3])); // 6
 
 //2. Turn an array of numbers into a long string of all those numbers.
-const stringConcat = (arr) => {
+const stringConcat = (arr: number[]): string => {
   return arr.reduce((acc, curr) => acc.toString() + curr.toString(), "");
 };
 console.log(stringConcat([1, 2, 3])); // "123"
 
 //3. Turn an array of voter objects into a count of how many people voted
-const voters = [
+interface Voter {
+  name: string;
+  age: number;
+  voted: boolean;
+}
+
+const voters: Voter[] = [
   { name: "Bob", age: 30, voted: true },
   { name: "Jake", age: 32, voted: true },
   { name: "Kate", age: 25, voted: false },
@@ -32,13 +38,20 @@ const voters = [
   { name: "Zack", age: 19, voted: false },
 ];
 
-const totalVotes = (arr) => {
-  return arr.reduce((acc, curr) => acc + (curr.voted ? 1 : 0), 0);
+const totalVotes = (arr: Voter[]) => {
+  return arr.reduce(
+    (acc: number, curr: Voter) => acc + (curr.voted ? 1 : 0),
+    0
+  );
 };
 console.log(totalVotes(voters)); // 7
 
 // 4. Given an array of all your wishlist items, figure out how much it would cost to just buy everything at once
-const wishlist = [
+interface WishlistItem {
+  title: string;
+  price: number;
+}
+const wishlist: WishlistItem[] = [
   { title: "Tesla Model S", price: 90000 },
   { title: "4 carat diamond ring", price: 45000 },
   { title: "Fancy hacky Sack", price: 5 },
@@ -46,16 +59,26 @@ const wishlist = [
   { title: "A second Tesla Model S", price: 90000 },
 ];
 
-const shoppingSpree = (arr) => {
-  return arr.reduce((acc, curr) => acc + curr.price, 0);
+const shoppingSpree = (arr: WishlistItem[]) => {
+  return arr.reduce((acc: number, curr: WishlistItem) => acc + curr.price, 0);
 };
 console.log(shoppingSpree(wishlist)); // 227005
 
 //5. Given an array of arrays, flatten them into a single array
-var arrays = [["1", "2", "3"], [true], [4, 5, 6]];
+const arrays: (string | boolean | number)[][] = [
+  ["1", "2", "3"],
+  [true],
+  [4, 5, 6],
+];
 
-const flatten = (arr) => {
-  return arr.reduce((acc, curr) => acc.concat(curr), []);
+const flatten = (
+  arr: (string | boolean | number)[][]
+): (string | boolean | number)[] => {
+  return arr.reduce(
+    (acc: (string | boolean | number)[], curr: (string | boolean | number)[]) =>
+      acc.concat(curr),
+    []
+  );
 };
 console.log(flatten(arrays)); // ["1", "2", "3", true, 4, 5, 6];
 
@@ -68,7 +91,16 @@ how many of each of those age ranges actually voted.
 The resulting object containing this data should have 6 properties.
 See the example output at the bottom.*/
 
-const votersArr = [
+interface VoterStats {
+  numYoungVotes: number;
+  numYoungPeople: number;
+  numMidVotesPeople: number;
+  numMidsPeople: number;
+  numOldVotesPeople: number;
+  numOldsPeople: number;
+}
+
+const votersArr: Voter[] = [
   { name: "Bob", age: 30, voted: true },
   { name: "Jake", age: 32, voted: true },
   { name: "Kate", age: 25, voted: false },
@@ -83,9 +115,9 @@ const votersArr = [
   { name: "Zack", age: 19, voted: false },
 ];
 
-const voterResults = (arr) => {
+const voterResults = (arr: Voter[]) => {
   return arr.reduce(
-    (acc, curr) => {
+    (acc: VoterStats, curr: Voter) => {
       if (curr.age >= 18 && curr.age < 26) {
         acc.numYoungPeople++;
         if (curr.voted) {
@@ -135,9 +167,24 @@ how many watchers you have across all of your repositories.
 Don't be too disappointed if the number is 0. You're still new at this :)
 */
 
-const https = require("https");
+import https from "https";
+import { RequestOptions, IncomingMessage } from "http";
 
-const options = {
+interface GitHubRepo {
+  id: number;
+  name: string;
+  watchers_count: number;
+  // [key: string]: any; // Optional: allow extra fields
+}
+
+interface GitLabRepo {
+  id: number;
+  name: string;
+  forks_count: number;
+  // [key: string]: any;//allow other properties
+}
+
+const gitHubOptions: RequestOptions = {
   hostname: "api.github.com",
   port: 443,
   path: "/users/sveteok/repos",
@@ -147,9 +194,23 @@ const options = {
   },
 };
 
-https
-  .request(options, (res) => {
-    let data = "";
+const gitLabOptions: RequestOptions = {
+  hostname: "gitlab.com",
+  port: 443,
+  //   path: "/api/v4/projects/[your_username]%2F[your_repository_name]", //For one repo "your_username/your_repository_name" - URL encode '/' as '%2F'
+  path: "/api/v4/projects?owned=true", //For all owned repos
+  method: "GET",
+  headers: {
+    "User-Agent": "Node.js",
+    "PRIVATE-TOKEN": "your_access_token",
+  },
+};
+
+//GitHub version use Node's built-in https module
+const requestToGitHub = https.request(
+  gitHubOptions,
+  (res: IncomingMessage): void => {
+    let data: string = "";
 
     res.on("data", (chunk) => {
       data += chunk;
@@ -160,59 +221,56 @@ https
         const repos = JSON.parse(data);
         // console.log(repos.length);
         const totalWatchers = repos.reduce(
-          (acc, curr) => acc + curr.watchers_count,
+          (acc: number, curr: { watchers_count: number }) =>
+            acc + curr.watchers_count,
           0
         );
         console.log(`Total watchers (GitHub): ${totalWatchers}`);
-      } catch (err) {
+      } catch (err: undefined | unknown) {
         console.error("Error parsing JSON:", err);
       }
     });
-  })
-  .on("error", (err) => {
+  }
+);
+
+requestToGitHub
+  .on("error", (err: Error) => {
     console.error("Error with request:", err);
   })
   .end();
 
-//GitLab version
-const gitLabOptions = {
-  hostname: "gitlab.com",
-  port: 443,
-  //   path: "/api/v4/projects/[your_username]%2F[your_repository_name]", //For one repo "your_username/your_repository_name" - URL encode '/' as '%2F'
-  path: "/api/v4/projects?owned=true", //For all owned repos
-  method: "GET",
-  headers: {
-    "User-Agent": "Node.js",
-  },
-};
+//GitLab version use Node's built-in https module
+const requestToGitLab = https.request(gitLabOptions, (res: IncomingMessage) => {
+  let data: string = "";
 
-// add a PRIVATE-TOKEN header
-gitLabOptions.headers["PRIVATE-TOKEN"] = "your_access_token";
+  res.on("data", (chunk) => {
+    data += chunk;
+  });
 
-https
-  .request(gitLabOptions, (res) => {
-    let data = "";
+  res.on("end", () => {
+    if (res.statusCode !== 200) {
+      console.error(`Error (GitLab): ${res.statusCode}`);
+      return;
+    }
 
-    res.on("data", (chunk) => {
-      data += chunk;
-    });
-
-    res.on("end", () => {
-      if (res.statusCode !== 200) {
-        console.error(`Error (GitLab): ${res.statusCode}`);
-        return;
-      }
-      const repos = JSON.parse(data);
+    try {
+      const repos: GitLabRepo[] = JSON.parse(data);
       //   console.log(repos.forks_count); - For one repo
       //   console.log(repos);
       const totalWatchers = repos.reduce(
-        (acc, curr) => acc + curr.forks_count,
+        (acc: number, curr: { forks_count: number }) => acc + curr.forks_count,
         0
       );
       console.log(`Total watchers (GitLab): ${totalWatchers}`);
-    });
-  })
-  .on("error", (err) => {
+    } catch (err: undefined | unknown) {
+      console.error("Error parsing JSON:", err);
+      return;
+    }
+  });
+});
+
+requestToGitLab
+  .on("error", (err: Error) => {
     console.error("Error with request:", err);
   })
   .end();
@@ -225,49 +283,65 @@ curl --header "PRIVATE-TOKEN: <your_access_token>" \
 */
 
 //use the axios library
-const axios = require("axios");
+import axios from "axios";
 
-axios
-  .get("https://api.github.com/users/sveteok/repos", {
-    headers: { "User-Agent": "Node.js" },
-  })
-  .then((response) => {
+//fetch GitHub repos using axios
+async function fetchGitHubRepos() {
+  try {
+    const response = await axios.get<GitHubRepo[]>(
+      "https://api.github.com/users/sveteok/repos",
+      {
+        headers: { "User-Agent": "Node.js" },
+      }
+    );
+
     if (response.status !== 200) {
       console.error(`Error (GitHub): ${response.status}`);
       return;
     }
+
     const repos = response.data;
     console.log(repos.length);
+
     const totalWatchers = repos.reduce(
-      (acc, curr) => acc + curr.watchers_count,
+      (acc: number, curr: GitHubRepo) => acc + curr.watchers_count,
       0
     );
     console.log(`Total watchers (GitHub): ${totalWatchers}`);
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+  } catch (error) {
+    console.error("Error fetching data (GitHub):", error);
+  }
+}
+fetchGitHubRepos();
 
-//GitLab version
-axios
-  .get("https://gitlab.com/api/v4/projects?owned=true", {
-    headers: {
-      "User-Agent": "Node.js",
-      "PRIVATE-TOKEN": "your_access_token",
-    },
-  })
-  .then((response) => {
+//fetch GitLab repos using axios
+async function fetchGitLabRepos() {
+  try {
+    const response = await axios.get<GitLabRepo[]>(
+      "https://gitlab.com/api/v4/projects?owned=true",
+      {
+        headers: {
+          "User-Agent": "Node.js",
+          "PRIVATE-TOKEN": "your_access_token",
+        },
+      }
+    );
+
     if (response.status !== 200) {
       console.error(`Error (GitLab): ${response.status}`);
       return;
     }
+
     const repos = response.data;
-    const totalWatchers = repos.reduce(
-      (acc, curr) => acc + curr.forks_count,
+    console.log(repos.length);
+
+    const totalForks = repos.reduce(
+      (acc: number, curr: GitLabRepo) => acc + curr.forks_count,
       0
     );
-    console.log(`Total watchers (GitLab): ${totalWatchers}`);
-  })
-  .catch((error) => {
-    console.error("Error fetching data (GitLab):", error.status);
-  });
+    console.log(`Total forks (GitLab): ${totalForks}`);
+  } catch (error) {
+    console.error("Error fetching data (GitLab):", error);
+  }
+}
+fetchGitLabRepos();

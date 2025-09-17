@@ -13,7 +13,14 @@ const games = [
 
 */
 
-const games = [
+interface Game {
+  id: number;
+  date: string;
+  score: number;
+  won: boolean;
+}
+
+const games: Game[] = [
   { id: 1586948654, date: "2022-10-27", score: 145, won: false },
   { id: 2356325431, date: "2022-10-30", score: 95, won: false },
   { id: 2968411644, date: "2022-10-31", score: 180, won: true },
@@ -24,7 +31,7 @@ const games = [
 ];
 
 //a) Find the game with id of 1958468135 and print it.
-console.log(games.find((g) => g.id === 1958468135));
+console.log(games.find((g: Game) => g.id === 1958468135));
 
 //b) Find the index of the first game that the player has won. Print the index.
-console.log(games.findIndex((g) => g.won));
+console.log(games.findIndex((g: Game) => g.won));

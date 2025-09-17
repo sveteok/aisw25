@@ -16,7 +16,13 @@ Use the array methods to create new arrays.
 2. List all employee objects that are Full Stack Residents
 3. List all Instructors' full names (e.g., Wes Reid)
 */
-const users = [
+interface Person {
+  firstName: string;
+  lastName: string;
+  role: string;
+}
+
+const users: Person[] = [
   { firstName: "Bradley", lastName: "Bouley", role: "Full Stack Resident" },
   { firstName: "Chloe", lastName: "Alnaji", role: "Full Stack Resident" },
   { firstName: "Jonathan", lastName: "Baughn", role: "Enterprise Instructor" },
@@ -27,7 +33,7 @@ const users = [
 ];
 
 //1. List the last names of all employees
-const lastNames = users.map((user) => user.lastName);
+const lastNames: string[] = users.map((user) => user.lastName);
 console.log(lastNames);
 /*
 Output:
@@ -40,8 +46,8 @@ Output:
 */
 
 //2. List all employee objects that are Full Stack Residents
-const fullStackResidents = users.filter(
-  (user) => user.role === "Full Stack Resident"
+const fullStackResidents: Person[] = users.filter(
+  (user: Person) => user.role === "Full Stack Resident"
 );
 console.log(fullStackResidents);
 /*
@@ -66,9 +72,9 @@ Output:
 */
 
 //3. List all Instructors' full names (e.g., Wes Reid)
-const instructorsFullNames = users
-  .filter((user) => user.role.includes("Instructor"))
-  .map((user) => `${user.firstName} ${user.lastName}`);
+const instructorsFullNames: string[] = users
+  .filter((user: Person) => user.role.includes("Instructor"))
+  .map((user: Person) => `${user.firstName} ${user.lastName}`);
 console.log(instructorsFullNames);
 /*
 Output

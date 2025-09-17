@@ -25,7 +25,19 @@ EXTRA: Instead of returning only an array of grade numbers, return an array of n
 
 */
 
-const students = [
+interface Student {
+  name: string;
+  score: number;
+}
+
+type Grade = 0 | 1 | 2 | 3 | 4 | 5;
+
+interface StudentGrade {
+  name: string;
+  grade: Grade;
+}
+
+const students: Student[] = [
   { name: "Sami", score: 24.75 },
   { name: "Heidi", score: 20.25 },
   { name: "Jyrki", score: 27.5 },
@@ -34,9 +46,9 @@ const students = [
   { name: "Yrjö", score: 14.5 },
 ];
 
-const getGrades = (students) => {
-  return students.map((student) => {
-    let grade;
+const getGrades = (students: Student[]): number[] => {
+  return students.map((student: Student): number => {
+    let grade: Grade;
     if (student.score < 14.0) {
       grade = 0;
     } else if (student.score <= 17.0) {
@@ -57,9 +69,9 @@ const getGrades = (students) => {
 
 console.log(getGrades(students));
 
-const getGradesExtra = (students) => {
-  return students.map((student) => {
-    let grade;
+const getGradesExtra = (students: Student[]): StudentGrade[] => {
+  return students.map((student: Student): StudentGrade => {
+    let grade: Grade;
     if (student.score < 14.0) {
       grade = 0;
     } else if (student.score <= 17.0) {

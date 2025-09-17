@@ -10,12 +10,13 @@ const newNumbers = incrementAll(numbers);
 console.log(newNumbers); // prints [ 5, 8, 2, 9, 6 ]
 
 */
-const numbers = [4, 7, 1, 8, 5];
-console.log(numbers);
-const incrementAll = (arr) => arr.map((n) => ++n);
-console.log(incrementAll(numbers));
+{
+  const numbers: number[] = [4, 7, 1, 8, 5];
+  console.log(numbers);
+  const incrementAll = (arr: number[]): number[] => arr.map((n: number) => ++n);
+  console.log(incrementAll(numbers));
 
-/*
+  /*
 b)
 Create a function decrementAll that takes an array of numbers as a parameter and returns a new array where all of the array's elements have been decremented by one.
 
@@ -24,5 +25,6 @@ const newNumbers = decrementAll(numbers);
 console.log(newNumbers); // prints [ 3, 6, 0, 7, 4 ]
 */
 
-const decrementAll = (arr) => arr.map((n) => --n);
-console.log(decrementAll(numbers));
+  const decrementAll = (arr: number[]): number[] => arr.map((n: number) => --n);
+  console.log(decrementAll(numbers));
+}

@@ -9,7 +9,15 @@ implement the program using a for…of loop
 implement the program using the forEach method
 */
 
-const animals = ["horse", "cow", "dog", "hamster", "donkey", "cat", "parrot"];
+const animals: string[] = [
+  "horse",
+  "cow",
+  "dog",
+  "hamster",
+  "donkey",
+  "cat",
+  "parrot",
+];
 
 // Using for...of loop
 for (const animal of animals) {
@@ -25,7 +33,7 @@ donkey
 */
 
 // Using forEach method
-animals.forEach((animal) => {
+animals.forEach((animal: string) => {
   if (animal.includes("e")) {
     console.log(animal);
   }

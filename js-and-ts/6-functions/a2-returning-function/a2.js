@@ -1,4 +1,4 @@
-/*
+/** 
 Create a function named minimum that takes 3 numbers as parameters.
 The function should find the smallest of the given numbers and return it.
 Call your function with different numbers as parameters to make sure it works. 

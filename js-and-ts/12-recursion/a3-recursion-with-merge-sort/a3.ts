@@ -68,40 +68,60 @@ make a decision on how to split an array with an uneven number of elements
 */
 
 function mergeSort(arr: number[]): number[] {
-  // Your code here.
-  // You need to:
-  // 1. handle the base case (if the array only has 1 element)
-  // 2. split the list into two separate lists
-  // 3. recursively merge the lists by calling this function for them
-  // 4. call the mergeSubLists function for the "now-sorted" sublists and return its result
-
-  if (arr.length <= 1) {
+  if (arr.length === 1) {
     return arr;
   }
   const middle = Math.floor(arr.length / 2);
-  const left = arr.slice(0, middle);
-  const right = arr.slice(middle);
+  const left = mergeSort(arr.slice(0, middle));
+  const right = mergeSort(arr.slice(middle));
   return mergeSubLists(left, right);
 }
 
 function mergeSubLists(leftList: number[], rightList: number[]): number[] {
-  // Your code here.
-  // Merge the sub-lists.
-  // Add all elements from one list to the other list
-  // to the correct index so that the "combined" list
-  // remains sorted.
-  // Then return the combined list.
-    const result: number[] = [];
-    while (leftList.length && rightList.length) {
-        if (leftList[0] < rightList[0]) {
-            result.push(leftList.shift()!);
-        } else {
-            result.push(rightList.shift()!);
-        }
+  const result: number[] = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < leftList.length && j < rightList.length) {
+    const currentLeft = leftList[i];
+    const currentRight = rightList[j];
+
+    if (currentLeft !== undefined && currentRight !== undefined) {
+      if (currentLeft < currentRight) {
+        result.push(currentLeft);
+        i++;
+      } else {
+        result.push(currentRight);
+        j++;
+      }
+    } else if (currentLeft !== undefined) {
+      result.push(currentLeft);
+      i++;
+    } else if (currentRight !== undefined) {
+      result.push(currentRight);
+      j++;
     }
-    return result.concat(leftList, rightList);
+  }
+  // If there are any remaining elements in either list, add them to the result.
+  return result.concat(leftList.slice(i)).concat(rightList.slice(j));
 }
 
 const array = [4, 19, 7, 1, 9, 22, 6, 13];
 const sorted = mergeSort(array);
-console.log(sorted); // prints [ 1, 4, 6, 7, 9, 13, 19, 22 ]
+console.log(sorted);
+/*
+[
+  1,  4,  6,  7,
+  9, 13, 19, 22
+]
+*/
+
+const arrayExtra = [4, 19, 7, 1, 9, 22, 6, 13, 5];
+const sortedExtra = mergeSort(arrayExtra);
+console.log(sortedExtra);
+/*
+[
+  1,  4,  5,  6, 7,
+  9, 13, 19, 22
+]
+*/

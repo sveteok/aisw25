@@ -80,3 +80,4 @@ console.log(instructorsFullNames);
 Output
 [ 'Jonathan Baughn', 'Michael Herman', 'Wes Reid', 'Zach Klabunde' ]
 */
+export {};

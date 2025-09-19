@@ -11,17 +11,17 @@ Use for..of
 
 */
 
-{
-  const numbers: number[] = [5, 7, 2, 9, 3, 13, 15, 6, 17, 24];
-  for (const i in numbers) {
-    if (numbers[i] % 3 === 0) {
-      console.log(numbers[i]);
-    }
-  }
-
-  for (const n of numbers) {
-    if (n % 3 === 0) {
-      console.log(n);
-    }
+const numbers: number[] = [5, 7, 2, 9, 3, 13, 15, 6, 17, 24];
+for (const i in numbers) {
+  if (numbers[i] % 3 === 0) {
+    console.log(numbers[i]);
   }
 }
+
+for (const n of numbers) {
+  if (n % 3 === 0) {
+    console.log(n);
+  }
+}
+
+export {};

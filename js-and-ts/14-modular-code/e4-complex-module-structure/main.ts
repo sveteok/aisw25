@@ -1,6 +1,6 @@
 /** orchestrates the other modules */
-import printResultLine from "./display.js";
-import handleInput, { InputStatus } from "./input.js";
+import { printResult, printError } from "./display.js";
+import handleInput from "./input.js";
 import evaluateExpression from "./calculator.js";
 import {
   PROMPT_TXT,
@@ -39,21 +39,14 @@ rl.on("line", (line: string) => {
       break;
     default:
       try {
-        const { status, errorMsg, expression } = handleInput(rawInput);
-        if (status === InputStatus.ERROR && errorMsg) {
-          printResultLine(errorMsg, true);
-        } else if (expression !== undefined) {
-          const result = evaluateExpression(expression);
-          printResultLine(
-            `${RESULT} ${expression.number1} ${expression.operation} ${expression.number2} = ${result}`
-          );
-        }
+        const expression = handleInput(rawInput);
+        const result = evaluateExpression(expression);
+        printResult(expression, result);
       } catch (error) {
-        printResultLine(
+        printError(
           `${ERROR_OCCURRED}: ${
             error instanceof Error ? error.message : UNKNOWN_ERROR
-          }`,
-          true
+          }`
         );
       }
 

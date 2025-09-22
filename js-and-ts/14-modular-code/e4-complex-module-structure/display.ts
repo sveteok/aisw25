@@ -1,10 +1,16 @@
 /** handles output formatting */
+import { InputResponse } from "./input.js";
+import { RESULT } from "./constants.js";
 
-const printResultLine = (msg: string, error: boolean = false): void => {
-  if (error) {
-    console.error(msg);
-  } else {
-    console.log(msg);
-  }
+export const printResult = (
+  expression: InputResponse,
+  result: number
+): void => {
+  console.log(
+    `${RESULT} ${expression.number1} ${expression.operation} ${expression.number2} = ${result}`
+  );
 };
-export default printResultLine;
+
+export const printError = (msg: string, error: boolean = false): void => {
+  console.error(msg);
+};

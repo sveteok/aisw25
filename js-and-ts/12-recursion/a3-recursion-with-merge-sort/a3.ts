@@ -67,41 +67,38 @@ make a decision on how to split an array with an uneven number of elements
 (whether to include the "extra" element on the left or right list).
 */
 
-function mergeSort(arr: number[]): number[] {
-  if (arr.length === 1) {
-    return arr;
+function mergeSort(arr: readonly number[]): number[] {
+  if (arr.length <= 1) {
+    return [...arr];
   }
   const middle = Math.floor(arr.length / 2);
   const left = mergeSort(arr.slice(0, middle));
   const right = mergeSort(arr.slice(middle));
+
   return mergeSubLists(left, right);
 }
 
-function mergeSubLists(leftList: number[], rightList: number[]): number[] {
+function mergeSubLists(
+  leftList: readonly number[],
+  rightList: readonly number[]
+): number[] {
   const result: number[] = [];
   let i = 0;
   let j = 0;
 
   while (i < leftList.length && j < rightList.length) {
-    const currentLeft = leftList[i];
-    const currentRight = rightList[j];
+    const currentLeft = leftList[i]!;
+    const currentRight = rightList[j]!;
 
-    if (currentLeft !== undefined && currentRight !== undefined) {
-      if (currentLeft < currentRight) {
-        result.push(currentLeft);
-        i++;
-      } else {
-        result.push(currentRight);
-        j++;
-      }
-    } else if (currentLeft !== undefined) {
+    if (currentLeft < currentRight) {
       result.push(currentLeft);
       i++;
-    } else if (currentRight !== undefined) {
+    } else {
       result.push(currentRight);
       j++;
     }
   }
+
   // If there are any remaining elements in either list, add them to the result.
   return result.concat(leftList.slice(i)).concat(rightList.slice(j));
 }

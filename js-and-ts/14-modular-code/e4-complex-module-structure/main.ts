@@ -2,15 +2,7 @@
 import { printResult, printError } from "./display.js";
 import handleInput from "./input.js";
 import evaluateExpression from "./calculator.js";
-import {
-  PROMPT_TXT,
-  WELCOME_TXT,
-  HELP_TXT,
-  GOODBYE_TXT,
-  RESULT,
-  UNKNOWN_ERROR,
-  ERROR_OCCURRED,
-} from "./constants.js";
+import { PROMPT_TXT, WELCOME_TXT, HELP_TXT, GOODBYE_TXT } from "./constants.js";
 
 const { createInterface } = await import("readline");
 
@@ -43,11 +35,7 @@ rl.on("line", (line: string) => {
         const result = evaluateExpression(expression);
         printResult(expression, result);
       } catch (error) {
-        printError(
-          `${ERROR_OCCURRED}: ${
-            error instanceof Error ? error.message : UNKNOWN_ERROR
-          }`
-        );
+        printError(error);
       }
 
       break;

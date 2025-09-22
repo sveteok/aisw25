@@ -1,16 +1,13 @@
 /** handles output formatting */
-import { InputResponse } from "./input.js";
-import { RESULT } from "./constants.js";
+import { Expression } from "./types.js";
+import { RESULT, ERROR_OCCURRED } from "./constants.js";
 
-export const printResult = (
-  expression: InputResponse,
-  result: number
-): void => {
+export const printResult = (expression: Expression, result: number): void => {
   console.log(
     `${RESULT} ${expression.number1} ${expression.operation} ${expression.number2} = ${result}`
   );
 };
 
-export const printError = (msg: string, error: boolean = false): void => {
-  console.error(msg);
+export const printError = (error: Error): void => {
+  console.error(`${ERROR_OCCURRED}: ${error.message}`);
 };

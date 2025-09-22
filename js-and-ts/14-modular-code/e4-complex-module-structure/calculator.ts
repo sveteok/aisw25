@@ -1,14 +1,8 @@
 /** contains the calculation logic */
 import { ERROR_DIVISION_BY_ZERO } from "./constants.js";
+import { Command, Expression } from "./types.js";
 
-export type command = "+" | "-" | "*" | "/";
-type expression = {
-  number1: number;
-  number2: number;
-  operation: command;
-};
-
-type Operations = Record<command, (n1: number, n2: number) => number>;
+type Operations = Record<Command, (n1: number, n2: number) => number>;
 
 const Operations: Operations = {
   "+": (n1: number, n2: number): number => n1 + n2,
@@ -22,7 +16,7 @@ const Operations: Operations = {
   },
 };
 
-export const evaluateExpression = (expr: expression): number => {
+export const evaluateExpression = (expr: Expression): number => {
   const { number1, number2, operation } = expr;
   return Operations[operation](number1, number2);
 };

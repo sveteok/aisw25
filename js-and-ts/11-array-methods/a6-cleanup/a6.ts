@@ -35,8 +35,9 @@ const objectArray: (null | MapObject)[] = [
 //a) Erase the entries by finding them and setting them to null. Do not replace the original array, but modify it instead.
 
 for (let i: number = 0; i < objectArray.length; i++) {
-  if (objectArray[i] !== null && objectArray[i]?.toDelete) {
-    objectArray[i] = null;
+  let item = objectArray[i];
+  if (item !== null && item.toDelete) {
+    item = null;
   }
 }
 console.log(objectArray);

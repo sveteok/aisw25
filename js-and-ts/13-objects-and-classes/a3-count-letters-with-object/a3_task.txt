@@ -1,0 +1,36 @@
+This assignment continues 9. Loops: Assignment 4.
+
+------------------------------------------------------------------
+9. Loops: Assignment 4.
+
+The following function counts how many vowels there are in the given (English) sentence. 
+However, it has some repetitive code that could be simplified away by splitting some of the code into a helper function.
+
+Do the following:
+
+a) Identify the repetitive bit of code
+
+b) Create a helper function that performs the repetitive bit of code and returns a fitting value
+
+c) Modify the checkSentenceVowels function so that it calls your helper function once for each vowel instead of having the same loop just copy-pasted 6 times for each vowel
+
+The charAt function takes a letter of the string at the specified index. For example, for the string "abc", charAt(0) === 'a', chartAt(1) === 'b' and charAt(2) === 'c'.
+
+----------------------------------------------------------------
+
+Create a function getCountOfLetters that calculates the count of each letter in a string and returns the information, this time in an object.
+
+For example:
+
+const result = getCountOfLetters("a black cat");
+console.log(result);
+/* prints 
+{
+	a: 3,
+	b: 1,
+	c: 2,
+	k: 1,
+	l: 1,
+	t: 1
+}
+*/

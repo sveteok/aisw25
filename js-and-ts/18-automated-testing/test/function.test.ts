@@ -1,9 +1,34 @@
 import { test, expect } from "vitest";
-import { capitalizeWords } from "../e1-test-with-vitest/functions.js";
+import { capitalizeWords, reverse } from "../e1-test-with-vitest/functions.js";
 
 // test("dummy test", () => {
 //   expect(true).toBe(true);
 // });
+
+test("e3 - create one test for reverse function for 100% coverage", () => {
+  const input = "this is a test";
+  expect(reverse(input)).toBe("tset a si siht");
+});
+
+test("for a string containing only spaces", () => {
+  const input = "     ";
+  expect(reverse(input)).toBe("     ");
+});
+
+test("handle empty sentence", () => {
+  const input = "";
+  expect(reverse(input)).toBe("");
+});
+
+test("handle for a string containing only non-alphanumeric characters", () => {
+  const input = ".,-!?";
+  expect(reverse(input)).toBe("?!-,.");
+});
+
+test("handle mixed whitespace characters (spaces and tabs)", () => {
+  const input = "Was it \t a Cat I S\naw?";
+  expect(reverse(input)).toBe("?wa\nS I taC a \t ti saW");
+});
 
 test("should capitalisze the first letter and lowercase the rest for sentence", () => {
   const input = "this is a test sentence";

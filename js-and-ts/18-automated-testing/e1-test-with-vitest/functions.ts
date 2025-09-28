@@ -37,3 +37,7 @@ export function capitalizeWords(input: string): string {
     })
     .join(" ");
 }
+
+export function reverse(text: string): string {
+  return text.split("").reverse().join("");
+}

@@ -2,10 +2,16 @@
 Write a function isPalindrome that returns whether a specific string is a palindrome.
 */
 
-const isPalindrome = (str: string): boolean => {
-  for (let i: number = 0; i < str.length / 2; i++) {
-    const char1: string = str.charAt(i);
-    const char2: string = str.charAt(str.length - 1 - i);
+export const isPalindrome = (str: string): boolean => {
+  const normalized = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  if (normalized.length === 0) {
+    return false;
+  }
+
+  for (let i: number = 0; i < normalized.length / 2; i++) {
+    const char1: string = normalized.charAt(i);
+    const char2: string = normalized.charAt(normalized.length - 1 - i);
 
     if (char1 !== char2) {
       return false;

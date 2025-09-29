@@ -1,0 +1,28 @@
+Exercise 3: Test Coverage
+Run your tests with --coverage flag. See what parts of your calculator are being tested and what are not. If you don't yet have 100% coverage, write a few more tests.
+
+Add another function, reverse to functions.ts. What is the minimum amount of test code you can write to get your coverage back to 100%.
+ - create test for reverse function for 100% coverage
+
+      Coverage enabled with v8
+
+ ✓ test/e2.test.ts (13 tests) 3ms
+ ✓ test/function.test.ts (15 tests) 3ms
+
+ Test Files  2 passed (2)
+      Tests  28 passed (28)
+   Start at  22:02:26
+   Duration  277ms (transform 86ms, setup 0ms, collect 95ms, tests 6ms, environment 0ms, prepare 99ms)
+
+ % Coverage report from v8
+---------------------|---------|----------|---------|---------|-------------------
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------|---------|----------|---------|---------|-------------------
+All files            |     100 |      100 |     100 |     100 |                   
+ e1-test-with-vitest |     100 |      100 |     100 |     100 |                   
+  functions.ts       |     100 |      100 |     100 |     100 |                   
+ e2-describe-syntax  |     100 |      100 |     100 |     100 |                   
+  e2.ts              |     100 |      100 |     100 |     100 |                   
+---------------------|---------|----------|---------|---------|-------------------
+ PASS  Waiting for file changes...
+       press h to show help, press q to quit

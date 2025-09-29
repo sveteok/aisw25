@@ -1,0 +1,33 @@
+In this assignment, we make use of the Fake Store API: https://fakestoreapi.com/docs
+
+a)
+Create a function named getFakeStoreProducts() that fetches all products from the Fake Store API (https://fakestoreapi.com/products) and prints the names of the products.
+
+getFakeStoreProducts();
+// prints:
+// Mens Casual Premium Slim Fit T-Shirts
+// Mens Cotton Jacket
+// Mens Casual Slim Fit
+// John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet
+// Solid Gold Petite Micropave
+// White Gold Plated Princess
+// ...
+// etc
+b)
+Check the Fake Store documentation on how to "add" a new product to the store.
+
+Then, create a function named addFakeStoreProduct that takes 4 parameters: name, price, description and category.
+
+The function should POST the product information to the Fake Store API products endpoint (https://fakestoreapi.com/products) and 
+then print the ID of the added product. If you made your request successfully, the Fake Store API endpoint will return you the ID of your new product.
+
+(Note that no new products are actually created to the Fake Store backend, so you won't see your new product in the product list if you fetch it afterwards)
+
+c)
+Check the Fake Store documentation on how to "delete" a product from the store.
+
+Then, create a function deleteFakeStoreProduct that takes the product's ID as a parameter.
+
+The function should make a DELETE request to the Fake Store API products endpoint with the given product ID.
+
+If successful, the Fake Store API returns the deleted product. Print the name of the product that was deleted.
